@@ -26,7 +26,7 @@ var Router = function () {
 				self.onPathChange(path);			
 		    }
 		}, false);		
-		window.history.pushState({path: this.path}, '',this.path);
+		window.history.pushState({path: this.path}, '', '?path=' + this.path);
 	}	
 };
 
@@ -69,7 +69,7 @@ Router.prototype.navigate = function (newPath) {
 		window.location.hash = '#' + newPath;
 	} else if (this.hasHistory) {
 		this.path = newPath;
-		window.history.pushState({path: newPath}, '',newPath);
+		window.history.pushState({path: newPath}, '', '?path=' + newPath);
 		this.onPathChange(newPath);		
 	}
 };
