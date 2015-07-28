@@ -10,7 +10,11 @@ var About = React.createClass({displayName: "About",
 // Signin view
 var Signin = React.createClass({displayName: "Signin",
 	render: function () {
-    	return React.createElement("main", null,	"Signin");
+    	return React.createElement("main", null,
+			React.createElement("form",null,
+				React.createElement("input", {type: "text", name:"login"},null),
+				React.createElement("input", {type: "password", name: "pass"},null),
+				React.createElement("input", {type: "submit"}, null)));
   	}
 });
 
