@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Test HTML5 History API</title>
+		<link rel="stylesheet" href="app.css" />
+	</head>
+	<body>
+		<header>
+			<a href="javascript:navigate('/home')">Home</a>
+			<a href="javascript:navigate('/about')">About</a>
+		</header>
+		<main id="main">Loading...</main>
+		<script>
+			function getParameterByName(name) { 
+				name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"); 
+				var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search); 
+				return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			 }
+			
+			function navigate(path) {
+				console.log('navigate', path);
+				history.pushState({ path: path }, "Title", "?path=" + path);
+				showPage(path);				
+			}
+			
+			function showPage(path) {
+				console.log('show page', path);
+				var el = document.getElementById('main');
+				el.innerHTML = '<div>'+ path +'</div>';		
+			}
+			
+			window.addEventListener('popstate', function(event) {
+				console.log('popstate', event);
+			    if (event.state) {
+			        var path = event.state.path; //getParameterByName('path');					
+					showPage(path);			
+			    }
+			}, false);
+		
+			 window.onload = function () {	
+				var initialPath =  getParameterByName('path');		
+ 				navigate(initialPath);				
+			};
+		</script>
+	</body>
+
+</html>

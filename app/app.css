@@ -1,0 +1,14 @@
+header, main {
+	border: 1px dotted black;
+	padding: 10px;
+}
+main {
+	min-height: 200px;
+}
+header a {
+	margin: 0 10px;
+}
+
+a.active {
+	font-weight: bold;
+}

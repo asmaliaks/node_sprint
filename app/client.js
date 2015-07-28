@@ -1,7 +1,7 @@
-var React = require('react'),
+var React = require('react');
 
 // This is our React component, shared by server and browser thanks to browserify 
-app = React.createFactory(require('./app.js'))
+var app = React.createFactory(require('./app.js'))
  
 // This script will run in the browser and will render our component using the 
 // value from APP_PROPS that we generate inline in the page's html on the server. 

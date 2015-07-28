@@ -149,6 +149,13 @@ gulp.task('watch', function () {
 //     .pipe(rename("client.min.js"))
 //     .pipe(gulp.dest('./public/'));
 // });
-
+gulp.task('test-router', function () {
+    return browserify('./app/client.js')
+        .bundle()
+        //Pass desired output filename to vinyl-source-stream
+        .pipe(source('bundle.js'))
+        // Start piping stream to tasks!
+        .pipe(gulp.dest('./app/'));
+});
 gulp.task('default', ['watch']);
 
