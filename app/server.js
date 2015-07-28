@@ -10,7 +10,16 @@ server.get('/test', function (req, res, next) {
 	res.send(200, JSON.stringify(myservice.test()));
 	next();
 });
-
+server.post('/auth', function(req, res) {
+	server.use(restify.bodyParser({ mapParams: false }));
+	console.log(req.pass);
+	//if(req.body.email === 'xxx' && req.body.password === 'xxx'){
+	//	var data = true;
+	//} else {
+	//	data = false;
+	//}
+	//res.send(JSON.stringify(data));
+});
 // Prepare landing page
 server.get('/', function (req, res, next) {	
 	var router = new Router();	

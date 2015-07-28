@@ -9,12 +9,31 @@ var About = React.createClass({displayName: "About",
 });
 // Signin view
 var Signin = React.createClass({displayName: "Signin",
+	handleSubmit: function(e){
+		e.preventDefault();
+
+		var loginData = {};
+		loginData.login = React.findDOMNode(this.refs.login).value.trim();
+		loginData.pass = React.findDOMNode(this.refs.pass).value.trim();
+		loginData.academyId = 1;
+		var xhr = new XMLHttpRequest();
+
+		var body = 'login=' + encodeURIComponent(loginData.login) +
+			'&pass=' + encodeURIComponent(loginData.pass);
+
+		xhr.open("POST", '/auth', true)
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+		//xhr.onreadystatechange = ...;
+
+		xhr.send(body);
+	},
 	render: function () {
     	return React.createElement("main", null,
 			React.createElement("form",null,
-				React.createElement("input", {type: "text", name:"login"},null),
-				React.createElement("input", {type: "password", name: "pass"},null),
-				React.createElement("input", {type: "submit"}, null)));
+				React.createElement("input", {type: "text", name:"login", ref: "login"},null),
+				React.createElement("input", {type: "password", name: "pass", ref: "pass"},null),
+				React.createElement("input", {type: "submit", onClick: this.handleSubmit}, null)));
   	}
 });
 
