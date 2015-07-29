@@ -16,17 +16,23 @@ var Signin = React.createClass({displayName: "Signin",
 		loginData.login = React.findDOMNode(this.refs.login).value.trim();
 		loginData.pass = React.findDOMNode(this.refs.pass).value.trim();
 		loginData.academyId = 1;
+
 		var xhr = new XMLHttpRequest();
 
-		var body = 'login=' + encodeURIComponent(loginData.login) +
-			'&pass=' + encodeURIComponent(loginData.pass);
+		var body = '{"login":"' +loginData.login+'",' +
+			'"pass":"' + loginData.pass+'"}';
 
-		xhr.open("POST", '/auth', true)
-		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 
-		//xhr.onreadystatechange = ...;
+		xhr.open("POST", '/auth', true);
+		//xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 		xhr.send(body);
+		xhr.onreadystatechange = function(){
+			var response = xhr.responseText;
+			console.log(response);
+		};
+
+
 	},
 	render: function () {
     	return React.createElement("main", null,

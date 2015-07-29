@@ -5,20 +5,20 @@ var app = React.createFactory(require('./app.js'));
 var server = restify.createServer();
 var Router = require('./router.js');
 
+
 // Rest service
 server.get('/test', function (req, res, next) {
 	res.send(200, JSON.stringify(myservice.test()));
 	next();
 });
+server.use(restify.bodyParser());
 server.post('/auth', function(req, res) {
-	server.use(restify.bodyParser({ mapParams: false }));
-	console.log(req.pass);
-	//if(req.body.email === 'xxx' && req.body.password === 'xxx'){
-	//	var data = true;
-	//} else {
-	//	data = false;
-	//}
-	//res.send(JSON.stringify(data));
+
+	var jsonBody = JSON.parse(req.body);
+	console.log(req.body);
+
+	res.send(jsonBody);
+
 });
 // Prepare landing page
 server.get('/', function (req, res, next) {	
