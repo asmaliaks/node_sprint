@@ -28,7 +28,7 @@ var Signin = React.createClass({displayName: "Signin",
 		xhr.send(body);
 		xhr.onreadystatechange = function(){
 			var response = xhr.responseText;
-			console.log(response);
+			//console.log(response);
 		};
 
 
